@@ -73,4 +73,44 @@ func main() {
 
 	fmt.Println(elements["B"])
 
+	//looking up an element that may not exists
+	name, ok := elements["in"] //first variable holds the value returned and second variable holds whether value is present or not in bool terms
+	fmt.Println(name, ok)
+	if name, ok := elements["um"]; ok {
+		fmt.Println(name, ok)
+	}
+
+	//shoter way of creating the map
+	s_map := map[string]string{
+		"H":  "Hydrogen",
+		"He": "Helium",
+		"Li": "Lithium",
+		"Pb": "Lead",
+		"Ne": "Neon",
+	}
+	//iterating over the entire map
+	for k, v := range s_map {
+		fmt.Println(k, v)
+	}
+	//program to find smallest of the given list
+	list := []int{
+		48, 96, 86, 68,
+		57, 82, 63, 70,
+		37, 34, 83, 27,
+		19, 97, 9, 17,
+	}
+	max_number := 0
+	for _, value := range list {
+		if value > max_number {
+			max_number = value
+		}
+	}
+	fmt.Println(max_number)
+	smallest_number := list[0]
+	for _, value := range list {
+		if value < smallest_number {
+			smallest_number = value
+		}
+	}
+	fmt.Println(smallest_number)
 }
