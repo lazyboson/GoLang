@@ -17,6 +17,19 @@ func main() {
 	}
 	fmt.Println(sum / float64(len(x)))
 
+	//“If you have a sparse array (an array where most elements are set to their zero value),
+	// you can specify only the indices with values in the array literal:
+	var ArrayData = [12]int{1, 5: 4, 6, 10: 100, 1}
+	for _, _v := range ArrayData {
+		fmt.Println(_v)
+	}
+
+	//another way of declaring the array
+	var newArray = [...]int{1, 2, 3, 4}
+	for _, _v := range newArray {
+		fmt.Println(_v)
+	}
+
 	//go compiler don't allow us to create a variable that is non used
 	//for able to use range function of the go, use following code
 	var total float64 = 0.0
@@ -34,11 +47,17 @@ func main() {
 	}
 
 	//slice has variable length - size parameter is not explicitly required in case of the slice vis-a-vis array
+	//“Using […] makes an array. Using [] makes a slice.”
+
 	var slice1 []float64
 	fmt.Println(len(slice1))
 	//use make function to create slice
 	xx := make([]float64, 5)
 	fmt.Println(len(xx))
+
+	xx = append(xx, 40)
+	//fmt print len again to check if size has grown by one
+	fmt.Println(xx)
 
 	xxx := make([]float64, 5, 10)
 	for _, _x := range xxx {
@@ -54,6 +73,42 @@ func main() {
 	for _, _y1 := range y1 {
 		fmt.Println(_y1)
 	}
+
+	//create a slice using make function with zero length and non-zero capacity
+	x_vec := make([]int64, 0, 100)
+
+	// this method helps in unnecessary coping of elements as append increases the capacity twice post index increases to five
+
+	x_vec = append(x_vec, 100, 300, 400, 500)
+	x_vec = append(x_vec, 200)
+
+	for _, line := range x_vec {
+		fmt.Println(line)
+	}
+
+	//“When you take a slice from a slice, you are not making a copy of the data.
+	//Instead, you now have two variables that are sharing memory.”
+
+	yy := x_vec[1:3]
+	for _, line := range yy {
+		fmt.Println(line)
+	}
+
+	//modification of one will modify other
+
+	yy[0] = 20000
+
+	for _, line := range x_vec {
+		fmt.Println(line)
+	}
+
+	//we can use inbuilt copy function for creating independent slice
+	//“The copy function takes two parameters. The first is the destination slice and the second is the source slice”
+
+	y_x := []int{1, 2, 3, 4}
+	yy_x := make([]int, 4)
+	num := copy(yy_x, y_x)
+	fmt.Println(y, num)
 
 	//append adds the elements at the end of slice
 	slice2 := []int{1, 2, 3}
