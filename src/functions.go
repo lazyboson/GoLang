@@ -38,7 +38,25 @@ func third() {
 	fmt.Println("third")
 }
 
+type Adder struct {
+	start int
+}
+
+//method-- using the Adder Struct -- and can be invoked
+
+//method vs function ??
+//use methods if values need to use which are inititated at the start of the program
+//functions needs to be used if ur output only depends on the supplied inputs
+func (a Adder) AddTo(value int) int {
+	return a.start + value
+}
+
 func main() {
+	myAdder := Adder{start: 10}
+	fmt.Println(myAdder.AddTo(5))
+	f1 := myAdder.AddTo
+	fmt.Println(f1(10))
+
 	//passing slice with multiple arguments
 	xs := []int{1, 2, 3, 4}
 	fmt.Println(add(xs...))

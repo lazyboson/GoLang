@@ -34,9 +34,6 @@ func (it *IntTree) Contains(val int) bool {
 
 func main() {
 	var it *IntTree
-	for i := 0; i < 10; i++ {
-		it = it.Insert(rand())
-	}
 	it = it.Insert(5)
 	it = it.Insert(3)
 	it = it.Insert(10)
