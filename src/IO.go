@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"strings"
 )
@@ -65,6 +66,19 @@ func main() {
 		//print it out
 		fmt.Println(herr)
 	}
-	
 
+	files, err := ioutil.ReadDir(".")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, file := range files {
+		fmt.Println(file.Name())
+	}
+
+	message := []byte("Hello, Gophers!")
+	errG := ioutil.WriteFile("/Users/ashu/Documents/GoLang/src/hello.data", message, 0644)
+	if errG != nil {
+		log.Fatal(errG)
+	}
 }
